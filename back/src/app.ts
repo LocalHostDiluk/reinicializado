@@ -9,6 +9,8 @@ import supplierRoutes from "./routes/supplier.routes.js";
 import inventoryBatchRoutes from "./routes/inventory-batch.routes.js";
 import inventoryAdjustmentRoutes from "./routes/inventory-adjustment.routes.js";
 import saleRoutes from "./routes/sale.routes.js";
+import purchaseRoutes from "./routes/purchase.routes.js";
+import reportRoutes from "./routes/report.routes.js";
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/inventory/batches", inventoryBatchRoutes);
 app.use("/api/inventory/adjustments", inventoryAdjustmentRoutes);
 app.use("/api/sales", saleRoutes);
+app.use("/api/purchases", purchaseRoutes);
+app.use("/api/reports", reportRoutes);
 
 // Manejador de rutas no encontradas (debe ir antes del errorHandler)
 app.use((req, res) => {
