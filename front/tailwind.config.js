@@ -4,32 +4,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Colores principales - Inspirado en carnicería moderna
-        primary: {
+        // Colores que YA FUNCIONAN - No tocar
+        red: {
           50: "#FEF2F2",
           100: "#FEE2E2",
           200: "#FECACA",
           300: "#FCA5A5",
           400: "#F87171",
           500: "#EF4444",
-          600: "#DC2626", // Rojo principal
+          600: "#DC2626",
           700: "#B91C1C",
           800: "#991B1B",
           900: "#7F1D1D",
         },
-        secondary: {
+        slate: {
           50: "#F8FAFC",
           100: "#F1F5F9",
           200: "#E2E8F0",
           300: "#CBD5E1",
           400: "#94A3B8",
           500: "#64748B",
-          600: "#475569", // Gris azulado
+          600: "#475569",
           700: "#334155",
           800: "#1E293B",
           900: "#0F172A",
         },
-        accent: {
+        neutral: {
+          0: "#FFFFFF",
           50: "#FAFAFA",
           100: "#F5F5F5",
           200: "#E5E5E5",
@@ -39,43 +40,190 @@ export default {
           600: "#525252",
           700: "#404040",
           800: "#262626",
-          900: "#171717", // Negro elegante
+          900: "#171717",
         },
-        // Colores de estado
-        success: {
-          DEFAULT: "#10B981",
-          light: "#D1FAE5",
+        emerald: {
+          50: "#F0FDF4",
+          100: "#DCFCE7",
+          200: "#BBEF4B",
+          300: "#86EFAC",
+          400: "#4ADE80",
+          500: "#22C55E", // 🟢 Verde
+          600: "#16A34A",
+          700: "#15803D",
+          800: "#166534",
+          900: "#134E4A",
         },
-        warning: {
-          DEFAULT: "#F59E0B",
-          light: "#FEF3C7",
+        amber: {
+          50: "#FFFBEB",
+          100: "#FEF3C7",
+          200: "#FDE68A",
+          300: "#FCD34D",
+          400: "#FBBF24",
+          500: "#F59E0B", // 🟠 Naranja
+          600: "#D97706",
+          700: "#B45309",
+          800: "#92400E",
+          900: "#78350F",
         },
-        error: {
-          DEFAULT: "#DC2626",
-          light: "#FEE2E2",
+        blue: {
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#3B82F6", // 🔵 Azul
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF",
+          900: "#1E3A8A",
         },
-        info: {
-          DEFAULT: "#3B82F6",
-          light: "#DBEAFE",
+        // NUEVOS COLORES - Agregados
+        purple: {
+          50: "#FAF5FF",
+          100: "#F3E8FF",
+          200: "#E9D5FF",
+          300: "#D8B4FE",
+          400: "#C084FC",
+          500: "#A855F7", // 💜 Púrpura
+          600: "#9333EA",
+          700: "#7E22CE",
+          800: "#6B21A8",
+          900: "#581C87",
+        },
+        cyan: {
+          50: "#ECFDFD",
+          100: "#CFF9FC",
+          200: "#A5F3FC",
+          300: "#67E8F9",
+          400: "#22D3EE", // 💎 Cyan
+          500: "#06B6D4",
+          600: "#0891B2",
+          700: "#0E7490",
+          800: "#155E75",
+          900: "#164E63",
+        },
+        rose: {
+          50: "#FFF5F7",
+          100: "#FFE4E6",
+          200: "#FBCFE8",
+          300: "#F8A5D4",
+          400: "#F472B6",
+          500: "#EC4899", // 🌸 Rosa
+          600: "#DB2777",
+          700: "#BE185D",
+          800: "#9D174D",
+          900: "#831843",
+        },
+        teal: {
+          50: "#F0FDFA",
+          100: "#CCFBF1",
+          200: "#99F6E4",
+          300: "#5EEAD4",
+          400: "#2DD4BF", // 🟦 Teal
+          500: "#14B8A6",
+          600: "#0D9488",
+          700: "#0F766E",
+          800: "#115E59",
+          900: "#134E4A",
+        },
+        green: {
+          50: "#F0FDF4",
+          100: "#DCFCE7",
+          200: "#BBEF4B",
+          300: "#86EFAC",
+          400: "#4ADE80",
+          500: "#22C55E", // 🟢 Verde lima
+          600: "#16A34A",
+          700: "#15803D",
+          800: "#166534",
+          900: "#134E4A",
+        },
+        orange: {
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          200: "#FED7AA",
+          300: "#FDBA74",
+          400: "#FB923C",
+          500: "#F97316", // 🟠 Naranja vivo
+          600: "#EA580C",
+          700: "#C2410C",
+          800: "#9A3412",
+          900: "#7C2D12",
+        },
+        indigo: {
+          50: "#EEF2FF",
+          100: "#E0E7FF",
+          200: "#C7D2FE",
+          300: "#A5B4FC",
+          400: "#818CF8",
+          500: "#6366F1", // 🟦 Índigo
+          600: "#4F46E5",
+          700: "#4338CA",
+          800: "#3730A3",
+          900: "#312E81",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["Fira Code", "monospace"],
+      },
+      fontSize: {
+        xs: ["12px", { lineHeight: "16px" }],
+        sm: ["14px", { lineHeight: "20px" }],
+        base: ["16px", { lineHeight: "24px" }],
+        lg: ["18px", { lineHeight: "28px" }],
+        xl: ["20px", { lineHeight: "28px" }],
+        "2xl": ["24px", { lineHeight: "32px" }],
+        "3xl": ["30px", { lineHeight: "36px" }],
+        "4xl": ["36px", { lineHeight: "40px" }],
       },
       borderRadius: {
-        xl: "1rem",
-        "2xl": "1.25rem",
-        "3xl": "1.5rem",
+        sm: "6px",
+        DEFAULT: "8px",
+        md: "10px",
+        lg: "12px",
+        xl: "16px",
+        "2xl": "20px",
+        "3xl": "24px",
+        full: "9999px",
       },
       boxShadow: {
-        soft: "0 1px 3px 0 rgba(0, 0, 0, 0.05)",
-        card: "0 4px 6px -1px rgba(0, 0, 0, 0.08)",
-        "card-hover": "0 10px 20px -3px rgba(0, 0, 0, 0.12)",
-        button: "0 2px 4px 0 rgba(220, 38, 38, 0.15)",
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+        DEFAULT:
+          "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        md: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+        lg: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        xl: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)",
       },
-      backgroundImage: {
-        "gradient-primary": "linear-gradient(135deg, #DC2626 0%, #991B1B 100%)",
-        "gradient-dark": "linear-gradient(135deg, #171717 0%, #404040 100%)",
+      spacing: {
+        0: "0",
+        1: "4px",
+        2: "8px",
+        3: "12px",
+        4: "16px",
+        5: "20px",
+        6: "24px",
+        8: "32px",
+        10: "40px",
+        12: "48px",
+        16: "64px",
+        20: "80px",
+        24: "96px",
+      },
+      transition: {
+        DEFAULT: "all 0.2s ease",
+        fast: "all 0.15s ease",
+        smooth: "all 0.3s ease",
+      },
+      backdropBlur: {
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
       },
     },
   },

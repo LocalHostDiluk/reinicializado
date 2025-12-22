@@ -1,50 +1,75 @@
-import { type InputHTMLAttributes, forwardRef } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 import { cn } from "../../utils/cn";
+import { AlertCircle, CheckCircle } from "lucide-react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   helperText?: string;
+  success?: boolean;
+  icon?: React.ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, helperText, type = "text", ...props }, ref) => {
+  (
+    {
+      className,
+      label,
+      error,
+      helperText,
+      success,
+      icon,
+      type = "text",
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-secondary-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             {label}
+            {props.required && <span className="text-red-600 ml-1">*</span>}
           </label>
         )}
-        <input
-          type={type}
-          className={cn(
-            "flex h-11 w-full rounded-xl border-2 bg-white px-4 py-2.5 text-sm transition-colors",
-            "placeholder:text-secondary-400",
-            "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
-            "disabled:cursor-not-allowed disabled:bg-secondary-50 disabled:text-secondary-500",
-            error
-              ? "border-error focus:ring-error"
-              : "border-secondary-200 hover:border-secondary-300",
-            className
+        <div className="relative">
+          {icon && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
+              {icon}
+            </div>
           )}
-          ref={ref}
-          {...props}
-        />
+          <input
+            type={type}
+            className={cn(
+              "w-full h-11 bg-white rounded-lg border-2 px-4 py-2.5 text-base transition-all",
+              "placeholder:text-neutral-400",
+              "focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500",
+              "disabled:bg-neutral-100 disabled:text-neutral-500 disabled:cursor-not-allowed",
+              icon && "pl-10",
+              error && "border-red-500 focus:border-red-500",
+              success && "border-emerald-500 focus:border-emerald-500",
+              !error &&
+                !success &&
+                "border-neutral-300 hover:border-neutral-400",
+              className
+            )}
+            ref={ref}
+            {...props}
+          />
+          {success && !error && (
+            <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-emerald-500" />
+          )}
+          {error && (
+            <AlertCircle className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-red-500" />
+          )}
+        </div>
         {error && (
-          <p className="mt-2 text-sm text-error flex items-center gap-1">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
             {error}
           </p>
         )}
         {helperText && !error && (
-          <p className="mt-2 text-sm text-secondary-500">{helperText}</p>
+          <p className="mt-2 text-sm text-neutral-500">{helperText}</p>
         )}
       </div>
     );

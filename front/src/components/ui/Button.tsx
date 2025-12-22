@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { forwardRef, ButtonHTMLAttributes } from "react";
 import { cn } from "../../utils/cn";
 import { Loader2 } from "lucide-react";
 
@@ -12,6 +12,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "success";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -21,6 +23,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "md",
       isLoading = false,
+      icon,
+      iconPosition = "left",
       disabled,
       children,
       ...props
@@ -28,27 +32,26 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-95";
+      "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed active:scale-95";
 
     const variants = {
       primary:
-        "bg-primary-600 text-white hover:bg-primary-700 shadow-button focus-visible:ring-primary-500",
+        "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-md hover:shadow-lg",
       secondary:
-        "bg-secondary-700 text-white hover:bg-secondary-800 shadow-button focus-visible:ring-secondary-500",
+        "bg-slate-700 text-white hover:bg-slate-800 active:bg-slate-900 shadow-md hover:shadow-lg",
       outline:
-        "border-2 border-secondary-300 text-secondary-700 hover:bg-secondary-50 focus-visible:ring-secondary-400",
-      ghost:
-        "text-secondary-700 hover:bg-secondary-100 focus-visible:ring-secondary-400",
+        "border-2 border-neutral-300 text-neutral-900 hover:bg-neutral-50 active:bg-neutral-100",
+      ghost: "text-neutral-700 hover:bg-neutral-100 active:bg-neutral-200",
       danger:
-        "bg-error text-white hover:bg-red-700 shadow-button focus-visible:ring-error",
+        "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-md hover:shadow-lg",
       success:
-        "bg-success text-white hover:bg-green-700 shadow-button focus-visible:ring-success",
+        "bg-emerald-500 text-white hover:bg-emerald-600 active:bg-emerald-700 shadow-md hover:shadow-lg",
     };
 
     const sizes = {
-      sm: "h-9 px-3 text-sm rounded-xl",
-      md: "h-11 px-5 text-base rounded-xl",
-      lg: "h-12 px-6 text-lg rounded-2xl",
+      sm: "h-9 px-3 text-sm rounded-md",
+      md: "h-11 px-4 text-base rounded-lg",
+      lg: "h-12 px-6 text-lg rounded-xl",
     };
 
     return (
@@ -58,8 +61,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || isLoading}
         {...props}
       >
-        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-        {children}
+        {isLoading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <>
+            {icon && iconPosition === "left" && icon}
+            {children}
+            {icon && iconPosition === "right" && icon}
+          </>
+        )}
       </button>
     );
   }

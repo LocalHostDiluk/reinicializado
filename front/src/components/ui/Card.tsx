@@ -1,20 +1,22 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 import { cn } from "../../utils/cn";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
-  variant?: "default" | "gradient" | "outlined";
+  variant?: "default" | "elevated" | "outlined" | "gradient";
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    { className, hover = false, variant = "default", children, ...props },
+    { className, hover = true, variant = "default", children, ...props },
     ref
   ) => {
     const variants = {
-      default: "bg-white shadow-card",
-      gradient: "bg-gradient-primary text-white shadow-card",
-      outlined: "bg-white border-2 border-secondary-200",
+      default: "bg-white border border-slate-200 shadow-sm",
+      elevated: "bg-white shadow-md hover:shadow-lg",
+      outlined: "bg-slate-50 border-2 border-slate-200",
+      gradient:
+        "bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg",
     };
 
     return (
@@ -22,7 +24,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         className={cn(
           "rounded-2xl p-6 transition-all duration-200",
-          hover && "hover:shadow-card-hover hover:-translate-y-1",
+          hover && "hover:shadow-md",
           variants[variant],
           className
         )}
@@ -36,60 +38,46 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = "Card";
 
-// Card Header
 export const CardHeader = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn("flex flex-col space-y-2 pb-4", className)}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col gap-2 mb-4", className)}
+    {...props}
+  />
+));
 
 CardHeader.displayName = "CardHeader";
 
-// Card Title
 export const CardTitle = forwardRef<
   HTMLHeadingElement,
   HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => {
-  return (
-    <h3
-      ref={ref}
-      className={cn("text-xl font-semibold tracking-tight", className)}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn("text-lg font-bold text-slate-900", className)}
+    {...props}
+  />
+));
 
 CardTitle.displayName = "CardTitle";
 
-// Card Description
 export const CardDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
-  return (
-    <p
-      ref={ref}
-      className={cn("text-sm text-secondary-600", className)}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <p ref={ref} className={cn("text-sm text-slate-600", className)} {...props} />
+));
 
 CardDescription.displayName = "CardDescription";
 
-// Card Content
 export const CardContent = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  return <div ref={ref} className={cn("", className)} {...props} />;
-});
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("", className)} {...props} />
+));
 
 CardContent.displayName = "CardContent";
